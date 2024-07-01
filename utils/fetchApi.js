@@ -2,11 +2,11 @@ import axios from 'axios';
 
 export const baseUrl = 'https://api.rentcast.io/v1/properties';
 
-export async function fetchData(address) {
+export async function fetchData(value) {
   const properties_api = {
     method: 'GET',
-    url: `${baseUrl}/properties`,
-    params: { address: encodeURIComponent(address) },
+    url: baseUrl,
+    params: { address: value },
     headers: {
       accept: 'application/json',
       'X-Api-Key': '826dd2c652a14fd992efc858bb14195e'

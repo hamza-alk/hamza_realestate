@@ -10,7 +10,7 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText}) => (
       <Text color="gray.500" fontSize="sm" fontWeight="medium">{purpose}</Text>
       <Text fontSize="3xl" fontWeight="bold">{title1}<br />{title2}</Text>
       <Text fontSize="lg" paddingTop="3" paddingBottom="3" color="gray.700">{desc1}<br />{desc2}</Text>
-      <Link href="/">
+      <Link href="/propertypage">
         <Button fontSize="xl" bg="blue.300" color="white">
           {buttonText}
         </Button>
@@ -25,14 +25,6 @@ export default function Home() {
     <div style={{ textAlign: 'center'}}> 
       <h1 style={{ fontSize: '3rem', fontWeight: 'bold', color: 'blue' }}>336 Properties</h1>
       <Banner
-       purpose = "RENT A HOME"
-       title="Rental Homes for"
-       title2="Everyone"
-       desc1="Explore Aparments and Homes"
-       desc2="and more"
-       buttonText="Explore Renting"
-      />
-      <Banner
        purpose="BUY A HOME"
        title="Rental Homes for"
        title2="Everyone"
@@ -46,7 +38,7 @@ export default function Home() {
 
 {/*
 export async function getStatticPropes() {
-  const propertyForSale = await fetchApi('$(baseUrl}/properties/list?locationExternalIDs=5002')
+  const propertyForSale = await fetchApi('$(baseUrl}/....)
 }
 
 */}

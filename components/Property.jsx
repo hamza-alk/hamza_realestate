@@ -7,7 +7,7 @@ import millify from 'millify';
 import React, {useEffect, useState} from 'react';
 import { fetchData } from '../../utils/fetchApi';
 
-const Property = () => {
+const PropertyComponent = () => {
     const [address, setAddress] = useState('');
     const [property, setProperty] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ const handleFetchData = async () => {
 
     try {
       const data = await fetchData(address);
-      setPropertyDetails(data);
+      setProperty(data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -41,18 +41,21 @@ const handleFetchData = async () => {
 
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {propertyDetails && (
+      {property && (
         <div>
           <h2>Property Details</h2>
-          <pre>{JSON.stringify(propertyDetails, null, 2)}</pre>
+          <pre>{JSON.stringify(property, null, 2)}</pre>
         </div>
       )}
     </div>
   );
 };
 
-export default PropertyDetailsComponent;
+export default PropertyComponent;
 
+const domContainer = document.querySelector('#like_button_container');
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 
 
 {/*
