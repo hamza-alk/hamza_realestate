@@ -5,57 +5,38 @@ import { BsGridFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 import millify from 'millify';
 import React, {useEffect, useState} from 'react';
-import { fetchData } from '../../utils/fetchApi';
+import Link from 'next/link';
+import { features } from 'process';
+ import { data } from './SearchBar';
+// import './Property.module.css';
 
-const PropertyComponent = () => {
-    const [address, setAddress] = useState('');
-    const [property, setProperty] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const[error, setError] = useState(null);
+const Property = ({ property: { id, formattedAddress, propertyType, bedrooms, bathrooms, squareFootage, lotSize, yearBuilt, lastSalePrice, features: {floorCount, garage, pool}, ownerOccupied }}) => (
 
-const handleFetchData = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const data = await fetchData(address);
-      setProperty(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-};
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="Enter address..."
-      />
-      <button onClick={handleFetchData} disabled={!address || loading}>
-        Fetch Property Details
-      </button>
-
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {property && (
-        <div>
-          <h2>Property Details</h2>
-          <pre>{JSON.stringify(property, null, 2)}</pre>
-        </div>
-      )}
-    </div>
+  <Link href={`/property/${id}`} passHref>
+    <Flex flexWrap='wrap' w='420px' p='5' paddingTop='0px' justifyContent='flex-start' cursor='pointer' >
+      <Box w='full'>
+        <Flex paddingTop='2' alignItems='center' justifyContent='space-between'>
+          <Flex alignItems='center'>
+            <Text fontWeight='bold' fontSize='lg'>USD {lastSalePrice}</Text>
+          </Flex>
+        </Flex>
+        <Flex alignItems='center' p='1' justifyContent='space-between' w='250px' color='blue.400'>
+          {bedrooms} 
+          <FaBed /> | {bathrooms} <FaBath /> | {millify(squareFootage)} sqft <BsGridFill />
+        </Flex>
+        <Text fontSize='lg'>
+          {formattedAddress.length > 30 ? formattedAddress.substring(0, 30) + '...' : formattedAddress}
+        </Text>
+        <Text>
+          This is a {floorCount} story, {propertyType} property built in {yearBuilt}, and the lot size is {lotSize}.
+          Garage: {garage ? 'Yes' : 'No'} | Pool: {pool ? 'Yes' : 'No'} | Owner Occupied: {ownerOccupied ? 'Yes' : 'No'}
+        </Text>
+      </Box>
+    </Flex>
+  </Link>
   );
-};
 
-export default PropertyComponent;
-
-const domContainer = document.querySelector('#like_button_container');
-const root = ReactDOM.createRoot(domContainer);
-root.render(e(LikeButton));
+export default Property;
 
 
 {/*
