@@ -16,6 +16,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/property/[id].js", "pages/_app.js", "components/SearchBar.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/property/RedfinClient.js", "pages/_app.js", "components/SearchBar.jsx"],
   "exclude": ["node_modules"]
 }
