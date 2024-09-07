@@ -1,9 +1,9 @@
 import "../styles/globals.css";
 import { useState } from "react";
 import SearchBar from "../components/SearchBar.jsx";
-import Home from "./Home"; // Make sure to import your HomePage component
-import PropertyPage from "./PropertyPage"; // Ensure correct import path
-import AboutMe from "./AboutMe"; // Create and import this component
+import Home from "./Home";  
+import PropertyPage from "./PropertyPage";  
+import AboutMe from "./AboutMe";  
 
 export default function MyApp({ Component, pageProps }) {
   const [activeTab, setActiveTab] = useState("home");
@@ -11,7 +11,7 @@ export default function MyApp({ Component, pageProps }) {
   const renderContent = () => {
     switch (activeTab) {
       case "home":
-        return <Home />;
+        return <Home />; 
       case "property":
         return <PropertyPage />;
       case "about":
